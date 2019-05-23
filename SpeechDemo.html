@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<style>
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+
+<body>
+    <!--Speech Start-->
+    <div id="formServiceBulletin" class="container">
+        <h3>Voice Recognition - Demo</h3>
+
+        <table border="1">
+            <tbody>
+                <tr id="row0">
+                    <th rowspan="2" style="width:5%;">OP</th>
+                    <th rowspan="2" style="width:5%;">REF</th>
+                    <th rowspan="2" style="width:85%;">DESCRIPTION OF OPERATION</th>
+                    <th style="text-align: center; 8%;" colspan="2">STAMP DATE</th>
+                </tr>
+                <tr>
+                    <td style="width:5%;">Q TECH</td>
+                    <!--<td style="width:3%;">APP HOLDER</td>-->
+                </tr>
+                <tr id="row1">
+                    <td>1 <br /><br /><button type="submit" id="dt1" onclick="clockIn(this);">Clock In </button><br><label id="lbl_dt1"></label></td>
+                    <td>72-00-02<br /> ASSY 001<br /> <br /> PARA 3A<br /><br /><br /><br /> PARA 3B</td>
+                    <td>TASK 72-00-02-430-806H EFFECT H <br /> Core Engine Major Module (SAC including Tech insertion) Assembly 001 - Installation Of The HPC Rotor. <br /><br /> CAUTION: DO NOT TIGHTEN/OPERATE THE CHUCK WITHOUT THE SETUP MASTER 856A1154 OR THE HPC ROTOR FRONT SHAFT IN THE CHUCK. THE CHUCK SURFACES WILL BE PERMANENTLY DISTORTED IF THEY ARE EXPANDED BEYOND THE ELASTIC LIMIT. <br /><br /> Select as applicable: <br />
+                        <div id="radioDiv">
+                            <div id="row1_label1" name="row1_lbl">[1]</div> <input id="row1_input1" name="row1_input" type="radio" value="856A1334" />&nbsp;Install the high pressure compressor (HPC) rotor into the buildup fixture, 856A1334<br />
+                            <br />
+                            or
+                            <br /><br />
+                            <div id="row1_label2" name="row1_lbl">[2]</div> <input id="row1_input2" name="row1_input" type="radio" value="856A1393" />&nbsp;Install the HPC rotor in the support and rotation fixture, 856A1088 or the support and rotation fixture, 856A1393.
+
+                        </div>
+
+                        <br /><br />
+                        <div id="row1_label3" name="row1_lbl">[3]</div> DTI PMTE S/N: <input id="row1_input3" name="row1_input" type="text" value="" /><br>
+                    </td>
+                    <td><button type="submit" id="row1_request" onclick="appr(this);">1st Approval</button><label id="row1_msg" style="color:red;"></label>
+                        <label id="row1_result1"></label></td>
+                    <!--<td><button type="submit" id="row1_approve" onclick="appr(this);">2nd Approval</button> <label id="row1_result2"></label></td>-->
+                </tr>
+
+                <!--<tr id="row2">
+                    <td>2 <br /><br /> <button type="submit" id="dt2" onclick="clockIn(this);">Clock In </button><br><label id="lbl_dt2"></label></td>
+                    <td>72-00-02 <br /> ASSY 002<br /> <br /> PARA 3A</td>
+                    <td>TASK 72-00-02-430-807-A, EFFECT H <br /> a) Do a leak check of the fuel manifolds if not already done. <br /><br /> Refer to TASK 72-41-00-000-801 (Assembly 001, Effect H).<br /> NOTE: NO LEAKAGE IS ALLOWED.<br /><br /> <div id="row2_label1" name="row2_lbl">[4]</div> TORQUE PMTE S/N: <input id="row2_input1" name="row2_input" type="text" value="" /><br></td>
+                   <td><button type="submit" id="row2_request" onclick="appr(this);">1st Approval</button><label id="row2_msg"  style="color:red;"></label></td>
+                    <td><button type="submit" id="row2_approve" onclick="appr(this);">2nd Approval</button></td>
+                </tr>-->
+                <tr id="row2">
+                    <td>2 <br /><br /><button type="submit" id="dt2" onclick="clockIn(this);">Clock In </button><br><label id="lbl_dt2"></label></td>
+                    <td>72-00-02 <br /> ASSY 003<br /> <br /> PARA 4A</td>
+                    <td>Do a measurement and a make a record of Diameter D.<br><br>
+                        <div id="row2_label1" name="row2_lbl">[1]</div> Record diameter D: <input id="row2_input1" name="row2_input" type="number" value="" onfocus="validateInput(this);" /> (Range: 3.01 - 3.99)
+                    </td>
+                    <td><button type="submit" id="row2_request" onclick="appr(this);">1st Approval</button><label id="row2_msg" style="color:red;"></label>
+                        <label id="row2_result1"></label></td>
+                    <!--<td><button type="submit" id="row2_approve" onclick="appr(this);">2nd Approval</button>
+                        <label id="row2_result2"></label></td>-->
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table>
+
+            <button type="button" class="btn btn-primary" id="btnStart" onclick="toggleStartStop();">Start</button>&nbsp;
+            <button type="button" class="btn btn-secondary" id="btnSubmit" onclick="alert('Form Submitted Successfully');">Submit </button>
+            <br /><br />
+            Status:
+            &nbsp;<span id="recStatus"> To begin, click 'Start'</span>
+
+            <br>
+            Result:
+            &nbsp;<span id="recResult"></span>
+
+            <div style="background-color: white; border-color: black;">
+                <span id="txtFinalResult"></span>
+                <span id="txtInterimResult" style="color:grey;"></span>
+            </div>
+
+            <div id="signOff">
+                <br>
+                <div id="requestedBy"></div>
+                <div id="dateRequested"></div>
+
+                <br>
+
+                <div id="approvedBy"></div>
+                <div id="dateApproved"></div>
+            </div>
+
+        </table>
+
+    </div>
+    <!--Speech End-->
+    <!--Face Recognition Start-->
+    <div id="face_recog" style="display:none">
+
+        <!--<div class="progress" id="loader">
+                <div class="indeterminate"></div>
+            </div>-->
+			 <div style="font-size:20pt;" id="title">Face Detection</div>
+        <div class="row">
+            <div class="col col-xs-11">
+                <div style="position: relative; margin-bottom: 0px;" class="margin">
+                    <video onloadedmetadata="onPlay(this)" style="width:450px; height:340px;" id="inputVideo" autoplay muted></video>
+                    <canvas id="overlay" style="width:450px; height:340px;" />
+                    <div id="detectedStatus" style="background-color: green;width: 450px;text-align: center;color: white;"></div>
+                </div>
+
+            </div>
+
+            <div class="col col-xs-1">
+                <div class="panel panel-primary" style="text-align: left">
+                    <div class="panel-body">List of Names</div>
+                    <div id="listOfNames"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+    <!--Face Recognition End-->
+    <!--Hand Gesture Start-->
+    <div id="hand_gesture" style="display:none">
+        <br>
+        <br>
+        <div class="mb10">
+            <!--<div id="updatenote" class="updatenote mt10" style="display:none"> loading model ..</div>-->
+        </div>
+
+
+        <div>
+            <canvas id="canvas" class="border canvasbox" style="display:none"></canvas>
+        </div>
+
+
+        <div id="pose" style="width:100%; padding: auto; margin: auto; margin-top:5px; margin-right: 400px; background-color: green;width: 450px;text-align: center;color: white;">None</div>
+
+
+        <div class="mt10">
+
+        </div>
+
+        <br>
+        <div id="instructions" class="updatenote mt10" style="margin-top:50px;"> loading model ...</div>
+    </div>
+    <!--Hand Gesture End-->
+	<div class="new" style="display: none;">
+    <button id="speechbtn" class="bx--btn bx--btn--secondary" type="button">
+        Toggle Speech
+    </button>
+    <button id="facebtn" class="bx--btn bx--btn--secondary" type="button">
+        Toggle Face Recognition
+    </button>
+    <button id="gesturebtn" class="bx--btn bx--btn--secondary" type="button">
+        Toggle Hand Gesture Recognition
+    </button>
+	</div>
+    <!--Speech Start-->
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <!--<script src="../public/js/speech.js"></script>-->
+    <!--Speech End-->
+    <!--Face Recognition Start-->
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <!--<link rel="stylesheet" href="../public/css/materialize.css">-->
+
+    <script type="text/javascript" src="../public/js/face-api.js"></script>
+    <script type="text/javascript" src="../public/js/commons.js"></script>
+    <script type="text/javascript" src="../public/js/drawing.js"></script>
+    <script type="text/javascript" src="../public/js/faceDetectionControls.js"></script>
+    <script type="text/javascript" src="../public/js/bbt.js"></script>
+    <script type="text/javascript" src="../public/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/js/webcamdetection.js"></script>
+    <!--Face Recognition End-->
+    <!--Hand Gesture Start-->
+    <!--<link rel="stylesheet" href="../public/css/carbon-components.css" />-->
+    <link rel="stylesheet" href="../public/css/track.css">
+
+    <script src="../public/js/carbon-components.js"></script>
+    <script src="../public/js/hand_gesture.js"></script>
+    <!--Hand Gesture End-->
+    <script type="text/javascript">
+        let speech_page = document.getElementById("formServiceBulletin");
+        let face_recog_page = document.getElementById("face_recog");
+        let hand_gesture_page = document.getElementById("hand_gesture");
+        let speechbtn = document.getElementById("speechbtn");
+        let facebtn = document.getElementById("facebtn");
+        let handbtn = document.getElementById("gesturebtn");
+
+        function showPage(e) {
+            e.style.display = "";
+        }
+
+        function hidePage(e) {
+            e.style.display = "none";
+        }
+
+        speechbtn.addEventListener("click", function() {
+            showPage(speech_page);
+            hidePage(face_recog_page);
+            hidePage(hand_gesture_page);
+        });
+        facebtn.addEventListener("click", function() {
+            showPage(face_recog_page);
+            hidePage(speech_page);
+            hidePage(hand_gesture_page);
+        });
+        handbtn.addEventListener("click", function() {
+            showPage(hand_gesture_page);
+            startHandGestureTracking();
+        });
+
+    </script>
+
+    <script>
+        var currLang = 'en-SG';
+        var speechSynth = new SpeechSynthesisUtterance();
+
+        // Get some required handles
+        var ServiceBulletin = document.getElementById('formServiceBulletin');
+        var txtFinalResult = document.getElementById('txtFinalResult');
+        var txtInterimResult = document.getElementById('txtInterimResult');
+        var btnSubmit = document.getElementById('btnSubmit');
+        var recStatus = document.getElementById('recStatus');
+        var currFieldFocus;
+        // Define a new speech recognition instance
+        var rec = null;
+        var recognising = false;
+
+        speechSynth.lang = currLang;
+        speechSynth.rate = 1;
+        speechSynth.pitch = 1.2;
+        var urlParams = new URLSearchParams(window.location.search);
+
+        var focusedTableRow;
+        var focusedSingleElement;
+        var noOfRowElements = 0;
+        var allElementsInForm;
+        var currentlistOfField;
+        var clockInTime;
+
+        var selectedRowElements; //can remove
+        var currentSelectedNo = 0; //can remove
+
+        $(document).ready(function() {
+            allElementsInForm = document.querySelectorAll('input');
+            console.log(allElementsInForm);
+            for (var i = 0; i < allElementsInForm.length; i++) {
+                allElementsInForm[i].disabled = true;
+            }
+        });
+
+
+        try {
+            if (!('webkitSpeechRecognition' in window)) {
+                upgrade();
+            } else {
+                rec = new webkitSpeechRecognition();
+                rec.continuous = true;
+                rec.interimResults = true;
+                rec.lang = currLang;
+                rec.maxAlternatives = 1; //added
+                reset();
+                rec.onend = reset();
+            }
+        } catch (e) {
+            rec.stop();
+            recStatus.innerHTML = 'Error in recognising. Try again';
+        }
+
+        rec.onstart = function() {
+            //alert('recording');
+            recStatus.innerHTML = ' Recognizing In Progress';
+            $("#btnStart").removeClass("btn-primary");
+            $("#btnStart").addClass("btn-danger");
+            $("#btnStart").text('Stop');
+            txtFinalResult.innerHTML = '';
+            txtInterimResult.innerHTML = '';
+
+        };
+
+
+        rec.onend = function() {
+            $("#btnStart").removeClass("btn-danger");
+            $("#btnStart").addClass("btn-primary");
+            $("#btnStart").text('Start');
+            $("#recStatus").text('To begin, click Start');
+
+        };
+
+        if (rec) {
+            // Define a threshold above which we are confident(!) that the recognition results are     worth looking at 
+            var confidenceThreshold = 0.8;
+
+            // Simple function that checks existence of s in str
+            var userSaid = function(str, s) {
+                return str.indexOf(s) > -1;
+            }
+
+            // Process the results when they are returned from the recogniser
+            rec.onresult = function(e) {
+                var strFinalResult = '';
+                var strInterimResult = '';
+
+                // Check each result starting from the last one
+                for (var i = e.resultIndex; i < e.results.length; ++i) {
+                    // If this is a final result
+                    if (e.results[i].isFinal) {
+                        // If the result is equal to or greater than the required threshold
+                        if (parseFloat(e.results[i][0].confidence) >= parseFloat(confidenceThreshold)) {
+                            var str = e.results[i][0].transcript.toLowerCase();
+
+                            if (userSaid(str, 'select')) {
+                                var text = str.replace('select', '').trim();
+
+                                if (text != null) {
+                                    if (text == "one" || text == "1") {
+                                        handleSelection("1");
+                                    } else if (text == "two" || text == "2") {
+                                        handleSelection("2");
+                                    } else if (text == "three" || text == "3") {
+                                        handleSelection("3");
+                                    }
+                                }
+
+                            } else if (userSaid(str, 'begin section')) {
+                                var text = str.replace('begin section', '').trim().toString();
+                                if (text != null) {
+                                    if (text == "one" || text == "1") {
+                                        removeHighlights();
+                                        startDateTime("1");
+                                        enableFields("1");
+                                    } else if (text == "two" || text == "2") {
+                                        removeHighlights();
+                                        startDateTime("2");
+                                        enableFields("2");
+                                    }
+                                }
+
+                            } else if (userSaid(str, 'enter')) {
+                                var text = str.replace('enter', '').trim().toString();
+								console.log("text 1: " + focusedSingleElement);
+								console.log("focused row: " + focusedTableRow);
+								if (focusedSingleElement != null) {
+									console.log("text 2: " + text);
+									document.getElementById("row" + focusedTableRow + "_"+ focusedSingleElement).style.borderColor = null;
+									if(text < 3.01 || text > 3.99){
+										document.getElementById("row" + focusedTableRow + "_"+ focusedSingleElement).value = "";
+										document.getElementById("row" + focusedTableRow + "_"+ focusedSingleElement).style.borderColor = '#B22222';
+									}
+									else {
+										document.getElementById("row" + focusedTableRow + "_"+ focusedSingleElement).style.borderColor = null;
+										document.getElementById("row" + focusedTableRow + "_"+ focusedSingleElement).value = text;
+									}
+									
+								}
+
+                            } else if (userSaid(str, 'sign off') || userSaid(str, 'sign-off')) {
+                                //clock in date: lbl_dt1
+                                console.log("focused row: " + focusedTableRow);
+                                console.log("clock in date: " + clockInTime);
+                                //row1_result1
+                                var result = true;
+                                var input1, input2;
+                                document.getElementById("row" + focusedTableRow + "_msg").innerHTML = "";
+
+                                var firstApproval = document.getElementById("row" + focusedTableRow + "_result1").value;
+
+                                if (IsNullOrEmpty(firstApproval)) {
+                                    switch (focusedTableRow) {
+                                        case "1":
+                                            $('#radioDiv :checked').each(function() {
+                                                input1 = $(this).val();
+                                            });
+
+                                            input2 = document.getElementById("row" + focusedTableRow + "_input3").value;
+
+                                            if (IsNullOrEmpty(input1)) {
+                                                document.getElementById("row" + focusedTableRow + "_label1").style.color = "#ff0000";
+                                                document.getElementById("row" + focusedTableRow + "_label2").style.color = "#ff0000";
+                                                document.getElementById("row" + focusedTableRow + "_msg").innerHTML = "Please fill in the required field.";
+                                                result = false;
+                                            }
+
+                                            if (IsNullOrEmpty(input2)) {
+                                                document.getElementById("row" + focusedTableRow + "_input3").style.borderColor = '#B22222';
+                                                document.getElementById("row" + focusedTableRow + "_msg").innerHTML = "Please fill in the required field.";
+                                                result = false;
+                                            }
+                                            break;
+
+                                        case "2" || "3":
+                                            input1 = document.getElementById("row" + focusedTableRow + "_input1").value;
+
+                                            if (IsNullOrEmpty(input1)) {
+                                                document.getElementById("row" + focusedTableRow + "_input1").style.borderColor = '#B22222';
+                                                document.getElementById("row" + focusedTableRow + "_msg").innerHTML = "Please fill in the required field.";
+                                                result = false;
+                                            }
+                                            break;
+                                    }
+
+                                    if (result) {
+										showFaceRecognition();
+                                    }
+                                } else {
+                                    //for Second approval
+									run();
+									showFaceRecognition();
+                                    //window.location.href = "../views/webcamFaceDetection.html?datetime1=" + clockInTime + "&input1=" + input1 + //"&input2=" + input2;
+                                }
+
+                            } else if (userSaid(str, 'submit')) {
+                                btnSubmit.click();
+                            } 
+                        }
+
+                        if (typeof str == 'undefined') {
+                            speechSynth.text = 'Please try again. ';
+                            speechSynthesis.speak(speechSynth);
+                            console.log("FinalResult : " + strFinalResult);
+
+                            return;
+                        } else {
+                            strFinalResult += str;
+                        }
+                    } else {
+                        if (typeof str == 'undefined') {
+                            speechSynth.text = 'Please try again. ';
+                            speechSynthesis.speak(speechSynth);
+                            console.log("interim : " + strInterimResult);
+                            strInterimResult = "Please try again.";
+                        } else {
+                            strInterimResult += str.replace('Please try again.', '');
+                        }
+
+                    }
+                }
+                console.log("displayed: " + strFinalResult);
+                console.log("displayed: " + strInterimResult);
+                txtFinalResult.innerHTML = strFinalResult;
+                txtInterimResult.innerHTML = strInterimResult;
+            };
+        }
+
+		function showFaceRecognition(){
+			console.log("etest");
+		    hidePage(speech_page);
+            showPage(face_recog_page);
+            hidePage(hand_gesture_page);
+		}
+        
+        function showWorksheet(){
+            showPage(speech_page);
+            hidePage(face_recog_page);
+            hidePage(hand_gesture_page);
+        }
+		
+        function appr(e) {
+            console.log(document.getElementById("lbl_dt2").value);
+            var rowNo = (e.id).split("_")[0];
+            var input1 = "";
+            console.log(rowNo);
+            switch (rowNo) {
+                case "row1":
+                    $('#radioDiv :checked').each(function() {
+                        input1 = $(this).val();
+                    });
+
+                    var input2 = document.getElementById(rowNo + "_input3").value;
+
+                    if (IsNullOrEmpty(input1)) {
+                        document.getElementById(rowNo + "_label1").style.color = "#ff0000";
+                        document.getElementById(rowNo + "_label2").style.color = "#ff0000";
+
+                        document.getElementById(rowNo + "_msg").innerHTML = "Please fill in the required field.";
+                    }
+
+                    if (IsNullOrEmpty(input2)) {
+                        document.getElementById(rowNo + "_input3").style.borderColor = '#B22222';
+                        document.getElementById(rowNo + "_msg").innerHTML = "Please fill in the required field.";
+
+                    }
+                    break;
+
+                case "row2" || "row3":
+                    input1 = document.getElementById(rowNo + "_input1").value;
+
+                    if (IsNullOrEmpty(input1)) {
+                        document.getElementById(rowNo + "_input1").style.borderColor = '#B22222';
+                        document.getElementById(rowNo + "_msg").innerHTML = "Please fill in the required field.";
+                    }
+                    break;
+
+
+            }
+
+
+        }
+
+        function IsNullOrEmpty(value) {
+            return (value == null || value === "");
+        }
+
+        function clockIn(e) {
+            var current_datetime = new Date();
+            console.log(current_datetime);
+
+            console.log(e.id);
+
+
+            let formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
+
+            document.getElementById("lbl_" + e.id).innerHTML = formatted_date;
+
+            //for testing purpose
+
+            /*
+		var no =1;
+		var listOfField = document.querySelectorAll('input[name="row' + no + '_input"]')
+        console.log(listOfField);
+		
+		console.log(allElementsInForm);
+
+        for (var i = 0; i < listOfField.length; i++)
+        {
+            allElementsInForm[i].disabled = false;
+        }
+		document.getElementById("row" + no).style.backgroundColor = "#F5F5F5"; //highlight row*/
+        }
+
+        function startDateTime(text) {
+            var current_datetime = new Date();
+
+            var formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
+
+            document.getElementById("lbl_dt" + text).innerHTML = formatted_date; //set date on label
+            document.getElementById("row" + text).style.backgroundColor = "#F5F5F5"; //highlight row
+
+            focusedTableRow = text;
+            clockInTime = formatted_date;
+            console.log(text);
+        }
+
+        function enableFields(no) {
+            currentlistOfField = document.querySelectorAll('input[name="row' + no + '_input"]')
+            console.log("no of elements: " + currentlistOfField.length);
+
+            for (var i = 0; i < currentlistOfField.length; i++) {
+                currentlistOfField[i].disabled = false;
+            }
+
+			if(currentlistOfField.length == 1){
+				console.log("entered");
+				currentlistOfField[0].focus();
+				var no = (currentlistOfField[0].id).split("_")[1];
+				focusedSingleElement = no;
+			}
+
+        }
+
+        function validateInput(e) {
+			//if(!IsNullOrEmpty(e.value)){
+			if(e.value != ""){
+				if (e.value < 3.01 || e.value > 3.99) {
+					speechSynth.text = 'The value that you entered is out of range.';
+					speechSynthesis.speak(speechSynth);
+					txtFinalResult.innerHTML = 'The value that you entered is out of range.';
+					
+					document.getElementById(e.id).style.borderColor = '#B22222';
+				} else {
+					txtFinalResult.innerHTML = "";
+					document.getElementById(e.id).style.borderColor = null;
+				}
+			}
+				
+			//}
+            
+        }
+
+        function handleSelection(no) {
+            console.log("focused row: " + focusedTableRow);
+
+            if (document.getElementById("row" + focusedTableRow + "_input" + no).type == 'radio') {
+                document.getElementById("row" + focusedTableRow + "_input" + no).checked = true;
+                focusedSingleElement = null;
+            } else {
+                document.getElementById("row" + focusedTableRow + "_input" + no).focus();
+                focusedSingleElement = "input" + no;
+            }
+        }
+
+        function removeHighlights() {
+			console.log("focusing : " + focusedTableRow);
+            if (focusedTableRow != null) {
+                document.getElementById("row" + focusedTableRow).style.backgroundColor = null;
+            }
+        }
+
+        function reset() {
+            recognising = false;
+            document.getElementById('btnStart').innerHTML = 'Start';
+        }
+
+        function toggleStartStop() {
+            if (recognising) {
+                rec.stop();
+                reset();
+            } else {
+                rec.start();
+                recognising = true;
+
+            }
+        }
+
+        /*
+    function valInput1(e) {
+        console.log(e.id)
+        var input1value = document.getElementById(e.id).value;
+        //if (input1value < 0.50 || input1value > 0.59) {
+        if (input1value > 0.59 || input1value < 0.50) {
+            speechSynth.text = 'The value that you entered is out of range.';
+            speechSynthesis.speak(speechSynth);
+            txtInterimResult.innerHTML = 'The value that you entered is out of range.';
+            document.getElementById(e.id).style.borderColor = '#B22222';
+        }
+
+    }
+
+    function valInput2(e) {
+        console.log(e.id)
+        var input1value = document.getElementById(e.id).value
+        //if (input1value < 0.50 || input1value > 0.59) {
+        if (input1value > 0.59 || input1value < 0.50) {
+            speechSynth.text = 'The value that you entered is out of range.';
+            speechSynthesis.speak(speechSynth);
+            txtInterimResult.innerHTML = 'The value that you entered is out of range.';
+            document.getElementById(e.id).style.borderColor = '#B22222';
+        }
+
+    }
+
+    function valInput3(e) {
+        console.log(e.id)
+        var input1value = document.getElementById(e.id).value
+        //if (input1value < 0.50 || input1value > 0.59) {
+        if (input1value > 0.59 || input1value < 0.50) {
+            speechSynth.text = 'The value that you entered is out of range.';
+            speechSynthesis.speak(speechSynth);
+            txtInterimResult.innerHTML = 'The value that you entered is out of range.';
+            document.getElementById(e.id).style.borderColor = '#B22222';
+        }
+
+    }*/
+
+    </script>
+
+
+
+
+
+</body>
+
+
+
+</html>

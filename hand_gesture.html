@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Hand Gesture Tracking Demo</title>
+    <link rel="stylesheet" href="../public/css/carbon-components.css" />
+    <link rel="stylesheet" href="../public/css/track.css">
+</head>
+
+<body style="width:100%; text-align: center;">
+    <div id="hand_gesture" style="display:">
+        <div style="font-size:20pt;" id="title">Gesture Detection</div>
+        <!--<div class="p20" >
+      
+    </div>-->
+        <br>
+        <br>
+        <div class="mb10">
+            <button id="trackbutton" class="bx--btn bx--btn--secondary" type="button" disabled style="display:none">
+                Toggle Video
+            </button>
+            <div id="updatenote" class="updatenote mt10" style="display:none"> loading model ..</div>
+        </div>
+
+
+        <div>
+            <video class="videobox canvasbox" autoplay="autoplay" id="myvideo" style="display:none"></video>
+            <canvas id="canvas" class="border canvasbox"></canvas>
+        </div>
+
+
+        <div id="pose" style="width:100%; padding: auto; margin: auto; margin-top:5px; margin-right: 400px; background-color: green;width: 450px;text-align: center;color: white;">None</div>
+
+
+        <div class="mt10">
+
+        </div>
+
+        <br>
+        <div id="instructions" class="updatenote mt10" style="margin-top:50px;"> loading model ...</div>
+        <canvas id="secCanvas" style="display:none"></canvas>
+    </div>
+    <script src="../public/js/carbon-components.js"></script>
+    <script src="../public/js/handtrack.min.js"> </script>
+    <script src="../public/js/hand_gesture.js"></script>
+</body>
+
+</html>
